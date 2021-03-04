@@ -39,7 +39,7 @@ Here is a compressed and totally not mandatory suggested guide for getting throu
 
 For this first bit, you should be able to verify in the console that you are successfully retrieving information from omdb.
 
-- Next, write a method `renderList` that receives an array of "movie" objects as a parameter.  Call `renderList` from the event handler you wrote in the previous step and pass it the Search results from the axios response
+- Next, write a function `renderList` that receives an array of "movie" objects as a parameter.  Call `renderList` from the event handler you wrote in the previous step and pass it the Search results from the axios response
 - `renderList` should iterate over the movies it receives as an argument and insert the movie data from each object into the DOM as a new HTML element.
 
 Before moving on, try to verify that you can enter text into the text input, click the button, and then see a list of movies appear on the page
