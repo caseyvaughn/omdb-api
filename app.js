@@ -4,22 +4,48 @@ const BASE_URL = `${DOMAIN}?apikey=${API_KEY}&`;
 
 
 // - Attach an event listener that simply logs the text value of the input
-let textInput = document.querySelector("#blank");
-let searchButton = document.querySelector("#search");
+const searchForm = document.querySelector("#search-form");
+const searchInput = document.querySelector("#blank");
+const movieList = document.querySelector(".movie-list")
 
-console.log(textInput);
 
-const logText = (event) => {
-  event.preventDefault();
-
-  let value = textInput.value;
-  console.log(value);
+async function fetchData(movie) {
+  try {
+    const url = `http://www.omdbapi.com/?apikey=6e111b46&t=${movie}&=`
+    const response = await axios.get(url);
+    const movieData = response.data;
+    // .search;
+    // console.log(movieData);
+    renderList(movieData);
+  } catch (error) {
+    console.log("ERROR!!!");
+  }
 }
 
-textInput.addEventListener("submit", logText);
+searchForm.addEventListener("submit", handleSubmit)
+
+function handleSubmit(event) {
+  event.preventDefault();
+  // console.log(searchInput.value);
+  let inputValue = searchInput.value;
+  searchInput.value = "";
+  fetchData(inputValue);
+}
 
 
-//   - Next, add the `axios` api call.For searching, the url should look something like this: `http://www.omdbapi.com/?apikey=[yourkey]&s=[movietitle]`
-//     - Remember to use `async` and `await` for the axios calls
-//       - Try to `console.log` the search results.Or use the `network` tab in the dev tools + the preview tab for a request ot view its structure.
-// ![dev tools](./devtools.png)
+// - Next, write a function `renderList` that receives an array of "movie" objects as a parameter.  Call `renderList` from the event handler you wrote in the previous step and pass it the Search results from the axios response
+// - `renderList` should iterate over the movies it receives as an argument and insert the movie data from each object into the DOM as a new HTML element.
+
+function showMovieData(data) {
+  console.log(data);
+  const movieTitle = document.createElement("h3");
+  movieTitle.innerText = `${data.title}`;
+  movieList.appendChild(movieTitle);
+}
+
+
+function renderList(movieData) {
+  movieData.forEach((movie) => {
+    console.log(movie.Title);
+  })
+}
