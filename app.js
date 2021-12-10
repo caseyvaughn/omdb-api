@@ -15,8 +15,11 @@ async function fetchData(movie) {
     const response = await axios.get(url);
     const movieData = response.data;
     // .search;
-    // console.log(movieData);
-    renderList(movieData);
+    console.log(movieData);
+    movieData.forEach((movieObj) => {
+      renderList(movieObj);
+    });
+    // renderList(movieData);
   } catch (error) {
     console.log("ERROR!!!");
   }
@@ -36,16 +39,17 @@ function handleSubmit(event) {
 // - Next, write a function `renderList` that receives an array of "movie" objects as a parameter.  Call `renderList` from the event handler you wrote in the previous step and pass it the Search results from the axios response
 // - `renderList` should iterate over the movies it receives as an argument and insert the movie data from each object into the DOM as a new HTML element.
 
-function showMovieData(data) {
-  console.log(data);
-  const movieTitle = document.createElement("h3");
-  movieTitle.innerText = `${data.title}`;
-  movieList.appendChild(movieTitle);
-}
+// function showMovieData(data) {
+//   console.log(data);
+//   const movieTitle = document.createElement("h3");
+//   movieTitle.innerText = `${data.title}`;
+//   movieList.appendChild(movieTitle);
+// }
 
 
 function renderList(movieData) {
-  movieData.forEach((movie) => {
-    console.log(movie.Title);
-  })
+  //console.log(movieData);
+  const movieTitle = document.createElement("h4");
+  movieTitle.innerText = `${data.country}`
+  movieList.appendChild(movieTitle);
 }
