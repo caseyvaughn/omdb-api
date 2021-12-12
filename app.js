@@ -16,9 +16,9 @@ async function fetchData(movie) {
     const movieData = response.data;
     // .search;
     console.log(movieData);
-    movieData.forEach((movieObj) => {
-      renderList(movieObj);
-    });
+    // movieData.forEach((movieObj) => {
+    //   renderList(movieObj);
+    renderList(movieData);
     // renderList(movieData);
   } catch (error) {
     console.log("ERROR!!!");
@@ -47,9 +47,29 @@ function handleSubmit(event) {
 // }
 
 
-function renderList(movieData) {
-  //console.log(movieData);
-  const movieTitle = document.createElement("h4");
-  movieTitle.innerText = `${data.country}`
+function renderList(movie) {
+  //movie title
+  // console.log(movie);
+  const movieTitle = document.createElement("h2");
+  movieTitle.innerText = movie.Title;
   movieList.appendChild(movieTitle);
-}
+  console.log(movieTitle);
+  //director
+  const movieDir = document.createElement("h3");
+  movieDir.innerText = `Director: ${movie.Director}`;
+  movieList.appendChild(movieDir);
+  //release year
+  const movieYear = document.createElement("h3");
+  movieYear.innerText = `Release Year: ${movie.Year}`;
+  movieList.appendChild(movieYear);
+  //movie poster
+  const moviePoster = document.createElement("img");
+  moviePoster.src = movie.Poster;
+  moviePoster.alt = `Movie poster for ${movie.Title}`
+  movieList.appendChild(moviePoster);
+  // console.log(moviePoster);
+
+  // const movieTitle = document.createElement("h4");
+  // movieTitle.innerText = `${data.country}`
+  // movieList.appendChild(movieTitle);
+};
