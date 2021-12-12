@@ -14,12 +14,8 @@ async function fetchData(movie) {
     const url = `http://www.omdbapi.com/?apikey=6e111b46&t=${movie}&=`
     const response = await axios.get(url);
     const movieData = response.data;
-    // .search;
     console.log(movieData);
-    // movieData.forEach((movieObj) => {
-    //   renderList(movieObj);
     renderList(movieData);
-    // renderList(movieData);
   } catch (error) {
     console.log("ERROR!!!");
   }
@@ -39,17 +35,8 @@ function handleSubmit(event) {
 // - Next, write a function `renderList` that receives an array of "movie" objects as a parameter.  Call `renderList` from the event handler you wrote in the previous step and pass it the Search results from the axios response
 // - `renderList` should iterate over the movies it receives as an argument and insert the movie data from each object into the DOM as a new HTML element.
 
-// function showMovieData(data) {
-//   console.log(data);
-//   const movieTitle = document.createElement("h3");
-//   movieTitle.innerText = `${data.title}`;
-//   movieList.appendChild(movieTitle);
-// }
-
-
 function renderList(movie) {
   //movie title
-  // console.log(movie);
   const movieTitle = document.createElement("h2");
   movieTitle.innerText = movie.Title;
   movieList.appendChild(movieTitle);
@@ -67,9 +54,4 @@ function renderList(movie) {
   moviePoster.src = movie.Poster;
   moviePoster.alt = `Movie poster for ${movie.Title}`
   movieList.appendChild(moviePoster);
-  // console.log(moviePoster);
-
-  // const movieTitle = document.createElement("h4");
-  // movieTitle.innerText = `${data.country}`
-  // movieList.appendChild(movieTitle);
 };
